@@ -22,6 +22,7 @@ with open("metrics.txt", "w") as outfile:
     outfile.write(f"Accuracy: {acc}")
 
 # plot it
+predictions = clf.predict(X_test)
 cm = confusion_matrix(y_test, predictions, labels=clf.classes_)
-disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=clf.classes_)
+disp = ConfusionMatrixDisplay(clf, X_test, y_test)
 plt.savefig("confusion_matrix.png")
