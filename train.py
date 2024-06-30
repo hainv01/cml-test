@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import pair_confusion_matrix
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
 
 # read in data
@@ -22,5 +22,6 @@ with open("metrics.txt", "w") as outfile:
     outfile.write(f"Accuracy: {acc}")
 
 # plot it
-disp = pair_confusion_matrix(clf, X_test, y_test, normalize="true", cmap=plt.cm.Blues)
+cm = confusion_matrix(y_test, predictions, labels=clf.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=clf.classes_)
 plt.savefig("confusion_matrix.png")
