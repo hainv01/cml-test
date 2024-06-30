@@ -25,4 +25,5 @@ with open("metrics.txt", "w") as outfile:
 predictions = clf.predict(X_test)
 cm = confusion_matrix(y_test, predictions, labels=clf.classes_)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=clf.classes_)
+disp.plot(cmap=plt.cm.Blues)
 plt.savefig("confusion_matrix.png")
